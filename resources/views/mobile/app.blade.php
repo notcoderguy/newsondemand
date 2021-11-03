@@ -12,5 +12,5 @@
     </div>
     <!-- * loader -->
 
-@include('mobile.layouts.menu')
+{{-- @include('mobile.layouts.menu') --}}
 @include('mobile.layouts.footer')

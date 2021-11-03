@@ -5,6 +5,15 @@
 
     RewriteEngine On
 
+    # Cross Origin Resource Sharing
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET"
+    Header set Access-Control-Allow-Credentials "true"
+
+    # Redirect non-www requests to www
+    RewriteCond %{HTTP_HOST} ^[^.]+\.test?$ [NC]
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

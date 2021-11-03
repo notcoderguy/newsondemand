@@ -13,36 +13,30 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('app');
-// });
+Route::domain('www.newsondemand.test') -> group(function () {
 
-Route::redirect('/', 'm/');
-
-Route::prefix('m')->group(function () {
-    // NewsOnDemand Home/Latest Articles
-    Route::get('/', [NewsController::class, 'app']);
-    
-    // NewsOnDemand Categories
-    Route::get('/categories', [NewsController::class, 'categories']);
-    Route::get('/categories/{cat}', [NewsController::class, 'categories']);
-    
-    // NewsOnDemand Single Article
-    Route::get('/article/{hashed}', [NewsController::class, 'article']);
-    
-    // NewsOnDemand Single Article
-    Route::get('/search', [NewsController::class, 'search']);
-    
-    // NewsOnDemand About
-    Route::get('/about-us', function () {
-        return view('mobile.pages.about-us') -> with(['year' => date("Y")]);
+    Route::get('/', function () {
+        return view('app');
     });
-});
+    
+    Route::prefix('m')->group(function () {
+        // NewsOnDemand Home/Latest Articles
+        Route::get('/', [NewsController::class, 'app']);
+        
+        // NewsOnDemand Categories
+        Route::get('/categories', [NewsController::class, 'categories']);
+        Route::get('/categories/{cat}', [NewsController::class, 'categories']);
+        
+        // NewsOnDemand Single Article
+        Route::get('/article/{hashed}', [NewsController::class, 'article']);
+        
+        // NewsOnDemand Single Article
+        Route::get('/search', [NewsController::class, 'search']);
+        
+        // NewsOnDemand About
+        Route::get('/about-us', function () {
+            return view('mobile.pages.about-us') -> with(['year' => date("Y")]);
+        });
+    });
 
-Route::get('/privacy-policy', function () {
-    return view('pages.privacy');
-});
-
-Route::get('/terms-and-conditions', function () {
-    return view('pages.terms');
 });
