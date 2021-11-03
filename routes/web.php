@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\News;
-
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,35 +13,36 @@ use App\Http\Controllers\News;
 |
 */
 
-// NewsOnDemand Home
-Route::get('/', [News::class, 'index']);
-
-// NewsOnDemand Latest Articles
-Route::get('/all', [News::class, 'all']);
-
-// NewsOnDemand Categories
-Route::get('/categories/{name}', [News::class, 'categories']);
-
-// NewsOnDemand Publisher
-// Route::get('/publisher/{name}', function () {
-//     return view('publisher');
+// Route::get('/', function () {
+//     return view('app');
 // });
 
-// NewsOnDemand Single Article
-Route::get('/article/{cat}/{slug}', [News::class, 'article']);
-Route::get('/article/{cat}/{sub_cat}/{slug}', [News::class, 'article']);
+Route::redirect('/', 'm/');
 
-// NewsOnDemand Terms & Conditions
-Route::get('/terms-conditions', function () {
-    return view('terms');
+Route::prefix('m')->group(function () {
+    // NewsOnDemand Home/Latest Articles
+    Route::get('/', [NewsController::class, 'app']);
+    
+    // NewsOnDemand Categories
+    Route::get('/categories', [NewsController::class, 'categories']);
+    Route::get('/categories/{cat}', [NewsController::class, 'categories']);
+    
+    // NewsOnDemand Single Article
+    Route::get('/article/{hashed}', [NewsController::class, 'article']);
+    
+    // NewsOnDemand Single Article
+    Route::get('/search', [NewsController::class, 'search']);
+    
+    // NewsOnDemand About
+    Route::get('/about-us', function () {
+        return view('mobile.pages.about-us') -> with(['year' => date("Y")]);
+    });
 });
 
-// NewsOnDemand Privacy Policy
 Route::get('/privacy-policy', function () {
-    return view('privacy');
+    return view('pages.privacy');
 });
 
-// NewsOnDemand Sitemap
-// Route::get('/sitemap.xml', function () {
-//     return view('article');
-// });
+Route::get('/terms-and-conditions', function () {
+    return view('pages.terms');
+});

@@ -2,14 +2,24 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'articles';
+    use HasFactory;
 
-    protected $fillable = [
-        'link', 'twitter_title','twitter_desc', 'twitter_img', 'keyword', 'title', 'short_desc', 'img_placeholder', 'article_img', 'date', 'story_highlights', 'article', 'language', 'publisher', 'category'
+    protected $news_data = [
+        'title',
+        'published',
+        'image',
+        'highlight',
+        'article',
+        'keyword',
+        'twitter_title',
+        'twitter_description',
+        'url',
+        'category',
+        'publisher',
     ];
 }
