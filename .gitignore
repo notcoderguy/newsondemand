@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 __pycache__
 /scripts/news/cron_log.txt
+*.wasm
