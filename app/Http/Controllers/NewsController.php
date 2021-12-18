@@ -49,10 +49,6 @@ class NewsController extends Controller
     {   
         $search = $_GET['search'];
 
-        // $data = News::query()
-        //     ->where('title', 'LIKE', "%{$search}%")
-        //     ->get();
-
         $data = News::orderBy('id', 'DESC')
                     ->where('title', 'LIKE', "%{$search}%")
                     ->paginate(12);
