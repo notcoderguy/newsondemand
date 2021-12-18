@@ -19,7 +19,7 @@ class NewsPipeline:
     def create_connection(self):
         self.conn = mysql.connector.connect(
             host = 'localhost',
-            user = 'notcoderguy',
+            user = 'ncg',
             password = '#Bhulgaya1',
             database = 'newsondemand'
         )

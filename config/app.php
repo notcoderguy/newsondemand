@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://www.newsondemand.test'),
+    'url' => env('APP_URL', 'https://www.newsondemand.in'),
 
-    'asset_url' => env('ASSET_URL', 'http://cdn.newsondemand.test'),
+    'asset_url' => env('ASSET_URL', 'https://cdn.newsondemand.in'),
 
     /*
     |--------------------------------------------------------------------------

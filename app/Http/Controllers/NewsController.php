@@ -11,15 +11,15 @@ class NewsController extends Controller
     public function app(Request $request)
     {
         $data = News::orderBy('id', 'DESC')
-                    ->paginate(10);
+                    ->paginate(12);
         
         if($request->ajax())
         {
-            $view = view('mobile.article_block') -> with(['data' => $data]) -> render();
+            $view = view('article_block') -> with(['data' => $data]) -> render();
             return response()->json(['html' => $view]);
         }
 
-        return view('mobile.app') -> with(['year' => date("Y"), 'data' => $data]);
+        return view('app') -> with(['data' => $data]);
     }
 
     public function article($hashed)
@@ -27,12 +27,22 @@ class NewsController extends Controller
         $article_data = News::where('id', base64_decode($hashed))
                     ->get();
 
-        return view('mobile.article') -> with(['year' => date("Y"), 'article_data' => $article_data[0]]);
+        return view('article') -> with(['article_data' => $article_data[0]]);
     }
 
-    public function categories()
+    public function categories(Request $request)
     {
+        $data = News::orderBy('id', 'DESC')
+                    ->where('category', $request->category)
+                    ->paginate(12);
 
+        if($request->ajax())
+        {
+            $view = view('article_block') -> with(['data' => $data]) -> render();
+            return response()->json(['html' => $view]);
+        }
+
+        return view('category') -> with(['data' => $data]);
     }
 
     public function search(Request $request)
@@ -41,9 +51,9 @@ class NewsController extends Controller
 
         $data = News::query()
             ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('article', 'LIKE', "%{$search}%")
             ->get();
+
         
-        return view('mobile.search') ->  with(['year' => date("Y"), 'data' => $data]);
+        return view('search') ->  with(['data' => $data, 'search' => $search]);
     }
 }
