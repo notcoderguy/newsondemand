@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js/cominimp-cache
 /storage/*.key
 /vendor
 .env
@@ -14,4 +15,4 @@ yarn-error.log
 /.idea
 /.vscode
 __pycache__
-cron_lob.txt
+/scripts/news/cron_log.txt
