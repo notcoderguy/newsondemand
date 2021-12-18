@@ -6,6 +6,12 @@
 
 @section('title_before', " '$page' | ")
 
+@section('description')Comprehensive, up-to-date news coverage, aggregated from sources all over India by NewsOnDemand.@endsection
+
+@section('banner_img'){{  asset('img/banner-newsondemand.png') }}@endsection
+
+@section('keywords')News, news update, latest, online, video, politics, entertainment, sports, cricket @endsection
+
 @extends('layouts.base')
 
 @php        

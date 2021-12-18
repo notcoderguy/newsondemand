@@ -8,7 +8,32 @@
     <title>@yield('title_before') {{ config('app.name') }} @yield('title_after')</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('favicon.jpg') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="@yield('title_before') {{ config('app.name') }} @yield('title_after')">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title_before') {{ config('app.name') }} @yield('title_after')">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image" content="@yield('banner_img')">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title_before') {{ config('app.name') }} @yield('title_after')">
+    <meta property="twitter:description" content="@yield('description')">
+    <meta property="twitter:image" content="@yield('banner_img')">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -128,12 +153,12 @@
 
                                         <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ url('categories/sports') }}">Sports News</a>
-                                            
+
                                         <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ url('categories/entertainment') }}">Entertainment News</a>
-                                            
+
                                         <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                            href="{{ url('categories/science') }}">Science News</a>                                      
+                                            href="{{ url('categories/science') }}">Science News</a>
                                     </div>
                                 </div>
                             </div>

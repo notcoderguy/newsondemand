@@ -1,6 +1,10 @@
-@section('title_before')
-    {{ $article_data["title"] }} | 
-@endsection
+@section('title_before'){{ $article_data["title"] }} | @endsection
+
+@section('description'){{ $article_data["twitter_description"] }}@endsection
+
+@section('banner_img'){{ $article_data["image"] }}@endsection
+
+@section('keywords'){{ $article_data["keyword"] }}@endsection
 
 @extends('layouts.base')
 
