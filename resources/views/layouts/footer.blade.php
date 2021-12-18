@@ -107,11 +107,22 @@
 </script>
 @isset($infiniteScroll)
     <script>
+        var searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('search')) {
+            var param = searchParams.get('search')
+        } else {
+            var param = ''
+        }
+
         var page = 1;
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
                 page++;
-                loadMoreNews(page);
+                if (param == '') {
+                    loadMoreNews(page);
+                } else {
+                    loadMoreNewsSearch(page, param);
+                }
             }
         });
 
@@ -147,6 +158,39 @@
                     );
                 })
         }
+
+        function loadMoreNewsSearch(page, param) {
+            $.ajax({
+                    url: '?page=' + page + '&search=' + param,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'get',
+                    beforesend: function() {
+                        $(".ajax-load").show();
+                    }
+                })
+                .done(function(data) {
+                    if (data.html == '{"message": "Server Error"}{"message": "Server Error"}') {
+                        $(".ajax-load").html(
+                            'ERROR: Server Error'
+                        );
+                        return;
+                    } else if (data.html == " ") {
+                        $(".ajax-load").html(
+                            'No more records found.'
+                        );
+                        return;
+                    }
+                    $('.ajax-load').hide();
+                    $("#article-block").append(data.html);
+                })
+                .fail(function(jqXHR, ajaxOp, thrownError) {
+                    $(".ajax-load").html(
+                        'Failed to load data'
+                    );
+                })
+        }        
     </script>
 @endisset
 <script>

@@ -47,12 +47,21 @@ class NewsController extends Controller
 
     public function search(Request $request)
     {   
-        $search = $request->input('search');
+        $search = $_GET['search'];
 
-        $data = News::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->get();
+        // $data = News::query()
+        //     ->where('title', 'LIKE', "%{$search}%")
+        //     ->get();
 
+        $data = News::orderBy('id', 'DESC')
+                    ->where('title', 'LIKE', "%{$search}%")
+                    ->paginate(12);
+
+        if($request->ajax())
+        {
+            $view = view('article_block') -> with(['data' => $data]) -> render();
+            return response()->json(['html' => $view]);
+        }
         
         return view('search') ->  with(['data' => $data, 'search' => $search]);
     }
