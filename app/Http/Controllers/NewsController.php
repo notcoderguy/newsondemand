@@ -61,4 +61,23 @@ class NewsController extends Controller
         
         return view('search') ->  with(['data' => $data, 'search' => $search]);
     }
+
+    public function cdn_image($title, $timestamp, $image)
+    {
+        // Replace spaces with dashes
+        $title_mod = preg_replace("/[^A-Za-z0-9 ]/", ' ', $title);
+        $title_mod = preg_replace('/\s\s+/', ' ', $title_mod);
+        $title_mod = preg_replace('/\s+/', '-', $title_mod);
+
+        // Break up timestamp into date, month, and year
+        $timestamp_mod = new \DateTime($timestamp);
+        $year = $timestamp_mod->format('Y');
+        $month = $timestamp_mod->format('m');
+        $day = $timestamp_mod->format('d');
+
+        // Get extension of image from url
+        $extension = pathinfo($image, PATHINFO_EXTENSION);
+
+        return "https://cdn.newsondemand.in/img/news/{$year}/{$month}/{$day}/{$title_mod}.{$extension}";
+    }
 }

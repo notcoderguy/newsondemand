@@ -43,6 +43,7 @@ class NewsPipeline:
                 item['timestamp']                
             ))
             self.conn.commit()
+            print("Item with title " +  item['title'] + " stored in db.")
         except mysql.connector.Error as e:
             print(f"ERROR : {e}")
             sys.exit(1)

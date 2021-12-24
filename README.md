@@ -20,7 +20,7 @@ NewsOnDemand is a news aggregator website. The project is coded in Laravel 8.75.
 - [ ] Move aggregator from Python to PHP.
 - [ ] Add Comment Section.
 - [ ] Add Infinty News.
-- [ ] Download media and use personal cdn server.  
+- [X] Download media and use personal cdn server.  
 
 ## LICENSE
 

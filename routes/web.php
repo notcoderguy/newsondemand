@@ -24,7 +24,7 @@ Route::domain('www.newsondemand.in') -> group(function () {
     Route::get('/categories/{category}', [NewsController::class, 'categories'])->name('categories');
     
     // NewsOnDemand Single Article
-    Route::get('/article/{hashed}', [NewsController::class, 'article']);
+    Route::get('/article/{hashed}/{title}', [NewsController::class, 'article']);
     
     // NewsOnDemand Single Article
     Route::get('/search', [NewsController::class, 'search']);

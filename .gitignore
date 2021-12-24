@@ -15,5 +15,6 @@ yarn-error.log
 /.idea
 /.vscode
 __pycache__
-/scripts/news/cron_log.txt
+/scripts/news/logs/
 *.wasm
+/public/img/news/
